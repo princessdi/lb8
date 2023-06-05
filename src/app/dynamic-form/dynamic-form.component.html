@@ -1,0 +1,31 @@
+<form [formGroup]="streetForm" (ngSubmit)="submitForm()">
+  <ion-item>
+    <ion-label>Назва вулиці</ion-label>
+    <ion-input formControlName="streetName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Довжина</ion-label>
+    <ion-input formControlName="length"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Історія</ion-label>
+    <ion-input formControlName="history"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Район</ion-label>
+    <ion-input formControlName="district"></ion-input>
+  </ion-item>
+
+  <ion-item *ngFor="let previousName of previousNames.controls; let i = index">
+    <ion-label>Попередня назва вулиці {{ i + 1 }}</ion-label>
+    <ion-input [formControlName]="i"></ion-input>
+    <ion-button (click)="removePreviousName(i)" slot="end">Видалити</ion-button>
+  </ion-item>
+
+  <ion-button (click)="addPreviousName()">Додати попередню вулицю</ion-button>
+
+  <ion-button type="submit" [disabled]="!streetForm.valid">Запис</ion-button>
+</form>
